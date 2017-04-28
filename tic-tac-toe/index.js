@@ -6,7 +6,18 @@ window.onload = function() {
   var legal = true;
   var plays = 0;
 
+  var displayPlayer = document.getElementById("player-turn");
+  var displayWinner = document.getElementById("winner");
+
+  displayPlayer.innerHTML = "Player 1's turn";
+  // displayWinner.innerHTML = "The winner is...";
+
+  var gameReset = function() {
+    console.log('resetting game...');
+  }
+
   canvasClick = function(boxNumber) {
+    // !player1 ? displayPlayer.innerHTML = "Player 1's turn" : displayPlayer.innerHTML = "Player 2's turn";
     console.log('player 1 = ', player1);
     // console.log('plays = ', plays);
     var checkLegal = function(array, boxNumber) {
@@ -34,10 +45,12 @@ window.onload = function() {
       if(checkArr.slice(r, r + 3).reduce(function(acc, val) {
         return acc + val;
       }) === 3) {
-        console.log('player 1 wins!')
+        console.log('player 1 wins!');
+        displayWinner.innerHTML = "Player 1 is the winner!";
         } else if(checkArr.slice(r, r + 3).reduce(function(acc, val) {
           return acc + val;}) === 30) {
-          console.log('player 2 wins!')
+          console.log('player 2 wins!');
+          displayWinner.innerHTML = "Player 2 is the winner!";
         }
       }
 
@@ -48,11 +61,13 @@ window.onload = function() {
       if([checkArr[r], checkArr[r + 3], checkArr[r + 6]].reduce(function(acc, val) {
         return acc + val;
       }) === 3) {
-        console.log('player 1 wins!')
+        console.log('player 1 wins!');
+        displayWinner.innerHTML = "Player 1 is the winner!";
         } else if([checkArr[r], checkArr[r + 3], checkArr[r + 6]].reduce(function(acc, val) {
           return acc + val;
         }) === 30) {
-          console.log('player 2 wins!')
+          console.log('player 2 wins!');
+          displayWinner.innerHTML = "Player 2 is the winner!";
         }
       }
       // check diagonals // 0,1,2,
@@ -61,12 +76,13 @@ window.onload = function() {
       if([checkArr[0], checkArr[4], checkArr[8]].reduce(function(acc, val) {
         return acc + val;}) === 3 || [checkArr[2], checkArr[4], checkArr[6]].reduce(function(acc, val) {
         return acc + val;}) === 3) {
-      console.log('player 1 wins!') } else
-
-      if([checkArr[0], checkArr[4], checkArr[8]].reduce(function(acc, val) {
-        return acc + val;}) === 30 || [checkArr[2], checkArr[4], checkArr[6]].reduce(function(acc, val) {
-        return acc + val;}) === 30) {
-        console.log('player 2 wins!')
+      console.log('player 1 wins!');
+      displayWinner.innerHTML = "Player 1 is the winner!";
+        } else if([checkArr[0], checkArr[4], checkArr[8]].reduce(function(acc, val) {
+          return acc + val;}) === 30 || [checkArr[2], checkArr[4], checkArr[6]].reduce(function(acc, val) {
+          return acc + val;}) === 30) {
+          console.log('player 2 wins!');
+          displayWinner.innerHTML = "Player 2 is the winner!";
       }
     };
 
@@ -83,6 +99,7 @@ window.onload = function() {
         ctx.fillStyle = "blue";
         p1[boxNumber-1] = 1;
         p2[boxNumber-1] = 'x';
+        !player1 ? displayPlayer.innerHTML = "Player 1's turn" : displayPlayer.innerHTML = "Player 2's turn";
       } else {return}
 
     } else {
@@ -92,6 +109,7 @@ window.onload = function() {
         ctx.fillStyle = "green";
         p2[boxNumber-1] = 10;
         p1[boxNumber-1] = 'x';
+        !player1 ? displayPlayer.innerHTML = "Player 1's turn" : displayPlayer.innerHTML = "Player 2's turn";
       } else {return}
     }
     ctx.fillRect(0, 0, 150, 150);
@@ -101,6 +119,9 @@ window.onload = function() {
     if(plays > 2) {
       winCheck(checkArr);
     }
+
+    // player1 ? displayPlayer.innerHTML = "Player 1's turn" : displayPlayer.innerHTML = "Player 2's turn";
+
     player1 = !player1;
     plays++;
     if(plays === 9) {

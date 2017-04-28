@@ -2,9 +2,18 @@
   <head>
     <script type="text/javascript" src="index.js"></script>
   </head>
+  <style>
+    #winner {
+      color: tomato;
+    }
+
+    #player-turn, .title {
+      color: purple;
+    }
+  </style>
 
   <body style="text-align: center">
-    <h1>Tic Tac Toe</h1> <br><br>
+    <h1 class="title">Tic Tac Toe</h1> <br><br>
       <canvas id="canvas1" width="150" height="150" style="border: 1px solid black" onclick="canvasClick(1)">
       </canvas>
       <canvas id="canvas2" width="150" height="150" style="border: 1px solid black" onclick="canvasClick(2)">
@@ -24,11 +33,11 @@
       <canvas id="canvas9" width="150" height="150" style="border: 1px solid black" onclick="canvasClick(9)">
       </canvas><br>
 
-      <h2>Player turn:    </h2><br></br>
+      <h2 id="player-turn"></h2><br></br>
 
-      <h1>  is the winner! </h1>
+      <h1 id="winner"></h1>
 
 
-      <button>Reset game</button>
+      <input type="button" id="reset" value="Reset game" onclick="gameReset()">Reset game</input>
 
   </body>
